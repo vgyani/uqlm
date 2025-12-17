@@ -45,12 +45,12 @@
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_notebooks/index';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
-        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://dtsapetis.github.io/uqlm/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://cvs-health.github.io/uqlm/versions.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.2';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
@@ -59,7 +59,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="🎯 BS Detector: Off-the-Shelf Ensemble for LLM Uncertainty" href="examples/ensemble_off_the_shelf_demo.html" />
-    <link rel="prev" title="uqlm.utils.tuner.Tuner" href="../_autosummary/uqlm.utils.tuner.Tuner.html" />
+    <link rel="prev" title="uqlm.utils.warn.UQLMDeprecationWarning" href="../_autosummary/uqlm.utils.warn.UQLMDeprecationWarning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -152,6 +152,13 @@
 
 
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../scorer_definitions/index.html">
+    Scorer Definitions
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../api.html">
     API
   </a>
@@ -171,13 +178,23 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../faqs.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../faqs.html">
     FAQs
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -295,6 +312,13 @@
 
 
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../scorer_definitions/index.html">
+    Scorer Definitions
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../api.html">
     API
   </a>
@@ -389,8 +413,12 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/ensemble_tuning_demo.html">🎯 Tunable Ensemble for LLM Uncertainty (Advanced)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/judges_demo.html">🎯 LLM-as-a-Judge</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/semantic_entropy_demo.html">🎯 Semantic Entropy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/white_box_demo.html">🎯 White-Box Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/semantic_density_demo.html">🎯 Semantic Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/white_box_multi_generation_demo.html">🎯 White-Box Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/white_box_single_generation_demo.html">🎯 White-Box Uncertainty Quantification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/black_box_demo.html">🎯 Black-Box Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/multimodal_demo.html">🎯 Multimodal Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/score_calibration_demo.html">🎯 Confidence Score Calibration Demo</a></li>
 </ul>
 </div>
 </nav></div>
@@ -450,11 +478,16 @@
                   
   <section id="example-notebooks">
 <h1>Example Notebooks<a class="headerlink" href="#example-notebooks" title="Link to this heading">#</a></h1>
-<p>Here’s a list of example notebooks for using the library. If you’re interested in contributing to existing notebooks or
-adding new ones please consult the guide on <a class="reference internal" href="../contribute.html#contribute"><span class="std std-ref">how to contribute</span></a>.</p>
+<p>UQLM offers a broad collection of tutorial notebooks to demonstrate usage of the various scorers. These notebooks aim to have versatile coverage of various LLMs and datasets, but you can easily replace them with your LLM and dataset of choice. Below is a list of these tutorials:</p>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Black-Box Demo"><img alt="" src="../_images/no_image.png" />
 <p><a class="reference internal" href="examples/black_box_demo.html"><span class="doc">🎯 Black-Box Uncertainty Quantification</span></a></p>
   <div class="sphx-glr-thumbnail-title">Black-Box Demo</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="White-Box Single-Generation Demo"><img alt="" src="../_images/no_image.png" />
+<p><a class="reference internal" href="examples/white_box_single_generation_demo.html"><span class="doc">🎯 White-Box Uncertainty Quantification</span></a></p>
+  <div class="sphx-glr-thumbnail-title">White-Box Single-Generation Demo</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="White-Box Multi-Generation Demo"><img alt="" src="../_images/no_image.png" />
+<p><a class="reference internal" href="examples/white_box_multi_generation_demo.html"><span class="doc">🎯 White-Box Uncertainty Quantification</span></a></p>
+  <div class="sphx-glr-thumbnail-title">White-Box Multi-Generation Demo</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="BS Detector Off-the-Shelf Ensemble Demo"><img alt="" src="../_images/no_image.png" />
 <p><a class="reference internal" href="examples/ensemble_off_the_shelf_demo.html"><span class="doc">🎯 BS Detector: Off-the-Shelf Ensemble for LLM Uncertainty</span></a></p>
   <div class="sphx-glr-thumbnail-title">BS Detector Off-the-Shelf Ensemble Demo</div>
@@ -464,12 +497,18 @@ adding new ones please consult the guide on <a class="reference internal" href="
 </div><div class="sphx-glr-thumbcontainer" tooltip="LLM-as-a-Judge Demo"><img alt="" src="../_images/no_image.png" />
 <p><a class="reference internal" href="examples/judges_demo.html"><span class="doc">🎯 LLM-as-a-Judge</span></a></p>
   <div class="sphx-glr-thumbnail-title">LLM-as-a-Judge Demo</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Multimodal Demo"><img alt="" src="../_images/no_image.png" />
+<p><a class="reference internal" href="examples/multimodal_demo.html"><span class="doc">🎯 Multimodal Uncertainty Quantification</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Multimodal Demo</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Semantic Entropy Demo"><img alt="" src="../_images/no_image.png" />
 <p><a class="reference internal" href="examples/semantic_entropy_demo.html"><span class="doc">🎯 Semantic Entropy</span></a></p>
   <div class="sphx-glr-thumbnail-title">Semantic Entropy Demo</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="White-Box Uncertainty Quantification Demo"><img alt="" src="../_images/no_image.png" />
-<p><a class="reference internal" href="examples/white_box_demo.html"><span class="doc">🎯 White-Box Uncertainty Quantification</span></a></p>
-  <div class="sphx-glr-thumbnail-title">White-Box Uncertainty Quantification Demo</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Semantic Density Demo"><img alt="" src="../_images/no_image.png" />
+<p><a class="reference internal" href="examples/semantic_density_demo.html"><span class="doc">🎯 Semantic Density</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Semantic Density Demo</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Score Calibration Demo"><img alt="" src="../_images/no_image.png" />
+<p><a class="reference internal" href="examples/score_calibration_demo.html"><span class="doc">🎯 Confidence Score Calibration Demo</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Score Calibration Demo</div>
 </div></div><div class="toctree-wrapper compound">
 </div>
 </section>
@@ -485,12 +524,12 @@ adding new ones please consult the guide on <a class="reference internal" href="
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../_autosummary/uqlm.utils.tuner.Tuner.html"
+       href="../_autosummary/uqlm.utils.warn.UQLMDeprecationWarning.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">uqlm.utils.tuner.Tuner</p>
+        <p class="prev-next-title">uqlm.utils.warn.UQLMDeprecationWarning</p>
       </div>
     </a>
     <a class="right-next"
@@ -556,7 +595,7 @@ adding new ones please consult the guide on <a class="reference internal" href="
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
     <br/>
   </p>
 </div>
