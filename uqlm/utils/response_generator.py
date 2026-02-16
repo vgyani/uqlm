@@ -154,6 +154,7 @@ class ResponseGenerator:
             if batch_idx == len(prompts_partition) - 1:
                 check_batch_time = False
             await self._process_batch(prompt_batch, duplicated_prompts, generations, check_batch_time)
+            # how is generations populated if it is not being returned and is not a class/instance variable?
         time.sleep(0.1)
         return generations, duplicated_prompts
 
@@ -195,7 +196,7 @@ class ResponseGenerator:
             if hasattr(self.llm, "logprobs"):
                 if self.llm.logprobs:
                     logprobs = self._extract_logprobs(logprobs=logprobs, result=result, count=count)
-            result_dict = {"logprobs": logprobs, "responses": result.content}
+            result_dict = {"logprobs": logprobs, "responses": [result.content]}
         else:
             result_dict = await self.ainvoke_with_top_logprobs(messages, count=count)
         if self.progress_bar:
@@ -224,7 +225,7 @@ class ResponseGenerator:
         if result is None:  # if all attempts fail
             return {"logprobs": [None] * count, "responses": []}
         logprobs = self._extract_logprobs(logprobs=logprobs, result=result, count=count)
-        return {"logprobs": logprobs, "responses": result.content}
+        return {"logprobs": logprobs, "responses": [result.content]}
 
     @staticmethod
     def _extract_logprobs(logprobs: Any, result: Any, count: int):
