@@ -154,7 +154,6 @@ class ResponseGenerator:
             if batch_idx == len(prompts_partition) - 1:
                 check_batch_time = False
             await self._process_batch(prompt_batch, duplicated_prompts, generations, check_batch_time)
-            # how is generations populated if it is not being returned and is not a class/instance variable?
         time.sleep(0.1)
         return generations, duplicated_prompts
 
