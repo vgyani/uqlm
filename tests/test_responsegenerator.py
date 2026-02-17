@@ -191,7 +191,7 @@ async def test_async_api_call_with_base_message_list():
 
     # Assert that the messages were constructed correctly
     expected_messages = [generator.system_message] + prompt
-    mock_llm.ainvoke.assert_called_once_with([expected_messages])
+    mock_llm.ainvoke.assert_called_once_with(expected_messages)
 
     # Assert progress bar was updated
     mock_progress.update.assert_called_once_with("mock_task", advance=1)
