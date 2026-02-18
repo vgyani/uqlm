@@ -1,6 +1,6 @@
 [project]
 name = "uqlm"
-version = "0.4.5"
+version = "0.5.4"
 description = "UQLM (Uncertainty Quantification for Language Models) is a Python package for UQ-based LLM hallucination detection."
 readme = "assets/README_PYPI.md"
 license = "Apache-2.0"
@@ -84,6 +84,7 @@ build-backend = "hatchling.build"
 packages = ["uqlm"]
 
 [tool.pytest.ini_options]
+testpaths = ["tests"]
 reruns = 3
 reruns_delay = 2.0
 markers = [
@@ -144,3 +145,6 @@ indent-style = "space"
 skip-magic-trailing-comma = true
 line-ending = "lf"
 docstring-code-format = true
+
+[tool.ruff.lint.per-file-ignores]
+"uqlm/utils/prompts/*.py" = ["ALL"]
