@@ -17,13 +17,13 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import BaseMessage
 from typing import Any, List, Optional, Union
 
-from uqlm.scorers.baseclass.uncertainty import UncertaintyQuantifier
 from uqlm.utils.results import UQResult
 from uqlm.black_box import BertScorer, CosineScorer, MatchScorer, ConsistencyScorer
-from uqlm.scorers.entropy import SemanticEntropy
+from uqlm.scorers.shortform.entropy import SemanticEntropy
+from uqlm.scorers.shortform.baseclass.uncertainty import ShortFormUQ
 
 
-class BlackBoxUQ(UncertaintyQuantifier):
+class BlackBoxUQ(ShortFormUQ):
     def __init__(
         self,
         llm: Optional[BaseChatModel] = None,
@@ -31,7 +31,7 @@ class BlackBoxUQ(UncertaintyQuantifier):
         device: Any = None,
         use_best: bool = True,
         nli_model_name: str = "microsoft/deberta-large-mnli",
-        sentence_transformer: str = "all-MiniLM-L6-v2",
+        sentence_transformer: str = "sentence-transformers/all-MiniLM-L6-v2",
         postprocessor: Any = None,
         system_prompt: Optional[str] = None,
         max_calls_per_min: Optional[int] = None,
@@ -68,10 +68,10 @@ class BlackBoxUQ(UncertaintyQuantifier):
             Specifies which NLI model to use. Must be acceptable input to AutoTokenizer.from_pretrained() and
             AutoModelForSequenceClassification.from_pretrained()
 
-        sentence_transformer : str, default="all-MiniLM-L6-v2"
+        sentence_transformer : str, default="sentence-transformers/all-MiniLM-L6-v2"
             Specifies which huggingface sentence transformer to use when computing cosine similarity. See
             https://huggingface.co/sentence-transformers?sort_models=likes#models
-            for more information. The recommended sentence transformer is 'all-MiniLM-L6-v2'.
+            for more information. The recommended sentence transformer is 'sentence-transformers/all-MiniLM-L6-v2'.
 
         postprocessor : callable, default=None
             A user-defined function that takes a string input and returns a string. Used for postprocessing
@@ -113,6 +113,7 @@ class BlackBoxUQ(UncertaintyQuantifier):
         self.sentence_transformer = sentence_transformer
         self.return_responses = return_responses
         self.scorer_names = scorers
+        self.generation_type = "default"
         self._validate_scorers(scorers)
 
     async def generate_and_score(self, prompts: List[Union[str, List[BaseMessage]]], num_responses: int = 5, show_progress_bars: Optional[bool] = True) -> UQResult:
@@ -140,7 +141,7 @@ class BlackBoxUQ(UncertaintyQuantifier):
         self.num_responses = num_responses
 
         self._construct_progress_bar(show_progress_bars)
-        self._display_generation_header(show_progress_bars)
+        self._display_generation_header(show_progress_bars, generation_type=self.generation_type)
 
         responses = await self.generate_original_responses(prompts=prompts, progress_bar=self.progress_bar)
         sampled_responses = await self.generate_candidate_responses(prompts=prompts, num_responses=self.num_responses, progress_bar=self.progress_bar)
