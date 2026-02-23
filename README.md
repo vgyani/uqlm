@@ -21,10 +21,13 @@
     <img src="https://img.shields.io/badge/docs-latest-blue.svg" alt="Documentation Status">
   </a>
   <a href="https://pypi.org/project/uqlm/">
-    <img src="https://img.shields.io/pypi/pyversions/uqlm" alt="Python Versions">
+    <img src="https://img.shields.io/badge/python-3.10%2B-blue" alt="Python Versions">
   </a>
   <a href="https://opensource.org/licenses/Apache-2.0">
     <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License">
+  </a>
+  <a href="https://github.com/astral-sh/uv">
+    <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json" alt="uv">
   </a>
   <a href="https://github.com/astral-sh/ruff">
     <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Ruff">
@@ -37,8 +40,8 @@
   <a href="https://openreview.net/pdf?id=WOFspd4lq5">
     <img src="https://img.shields.io/badge/TMLR-Published-blue?style=flat" alt="TMLR Publication">
   </a>
-  <a href="https://arxiv.org/abs/2504.19254">
-    <img src="https://img.shields.io/badge/arXiv-2504.19254-B31B1B.svg" alt="arXiv">
+  <a href="https://arxiv.org/abs/2602.17431">
+    <img src="https://img.shields.io/badge/arXiv-2602.17431-B31B1B.svg" alt="arXiv">
   </a>
 </p>
 
@@ -363,5 +366,18 @@ The `uqlm` software package is described in this **[this paper](https://arxiv.or
       archivePrefix={arXiv},
       primaryClass={cs.CL},
       url={https://arxiv.org/abs/2507.06196}, 
+}
+```
+
+The long-text methods and experiment results are described in **this paper**, available as a preprint on arXiv. To cite:
+```bibtex
+@misc{bouchard2026finegraineduncertaintyquantificationlongform,
+      title={Fine-Grained Uncertainty Quantification for Long-Form Language Model Outputs: A Comparative Study}, 
+      author={Dylan Bouchard and Mohit Singh Chauhan and Viren Bajaj and David Skarbrevik},
+      year={2026},
+      eprint={2602.17431},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2602.17431}, 
 }
 ```
